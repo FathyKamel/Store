@@ -1,0 +1,85 @@
+CREATE TABLE Customer (
+    CustomerID int AUTO_INCREMENT,
+    CustomerName varchar(255),
+    CustomerAddress varchar(255),
+    CustomerPhone varchar(255),
+    Notes varchar(255) ,
+    PRIMARY KEY (CustomerID)	
+);
+
+CREATE TABLE Invoice_Sale (
+    InvoiceSaleID int AUTO_INCREMENT,
+    InvoiceSaleDate date,
+    InvoiceSaleType varchar(255),
+    CustomerID int,
+    DelegatID int,
+    PRIMARY KEY (InvoiceSaleID)
+);
+
+CREATE TABLE Invoice_Sale_Detail (
+    InvoiceSaleDetailID int AUTO_INCREMENT,
+    InvoiceSaleID int,
+    InvoiceBuyID int,
+    ProductID int,
+    InvoiceSaleDetailPrice int,
+    InvoiceSaleDetailQuantity varchar(255),
+    InvoiceSaleDetailDiscount int ,
+    PRIMARY KEY (InvoiceSaleDetailID)
+);
+
+CREATE TABLE Products (
+    ProductsID int AUTO_INCREMENT,
+    ProductsName varchar(255),
+    ProductsCategory varchar(255),
+    ProductsUnit int,
+    ProductsIn int,
+    ProductsOut int,
+    ProductsLocation varchar(255),
+     PRIMARY KEY (ProductsID)
+);
+
+CREATE TABLE Invoice_Buy (
+    InvoiceBuyID int AUTO_INCREMENT,
+    InvoiceBuyType varchar(255),
+    InvoiceBuyDate date,
+    SupplierID int,
+    PRIMARY KEY (InvoiceBuyID)
+);
+  
+
+CREATE TABLE Supplier (
+    SupplierID int AUTO_INCREMENT,
+    SupplierName varchar(255),
+    SupplierAddress varchar(255),
+    SupplierPhone varchar(255),
+    PRIMARY KEY (SupplierID)
+);
+
+CREATE TABLE Delegate (
+    DelegateID int AUTO_INCREMENT,
+    DelegateName varchar(255),
+    DelegateAddress varchar(255),
+    DelegatePhone varchar(255),
+    PRIMARY KEY (DelegateID)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

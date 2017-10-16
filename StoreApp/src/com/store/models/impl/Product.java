@@ -3,11 +3,16 @@ package com.store.models.impl;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.store.models.basic.BasicStoreEntity;
 
+
+@Entity
+@Table(name="Products")
 public class Product implements BasicStoreEntity{
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

@@ -29,8 +29,8 @@ import com.store.models.basic.BasicStoreEntity;
 	        @Column(name = "SupplierPhone", length = 255)
 	    	private String SupplierPhone;
 	        
-	        @Column(name = "Notes", length = 255)
-	    	private String Notes;
+//	        @Column(name = "Notes", length = 255)
+//	    	private String Notes;
 
 	    @Override
 	    public Integer getId() {

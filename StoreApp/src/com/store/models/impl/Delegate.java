@@ -1,4 +1,4 @@
-package com.store.presentation;
+package com.store.models.impl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.store.models.impl.Customer;
+import com.store.models.impl.Delegate;
 import com.store.models.impl.Product;
 import com.store.models.impl.Supplier;
 
@@ -88,6 +89,7 @@ public class HibernateUtil {
 		configuration.addAnnotatedClass(Customer.class);
 		configuration.addAnnotatedClass(Product.class);
 		configuration.addAnnotatedClass(Supplier.class);
+		configuration.addAnnotatedClass(Delegate.class);
 		
 	}
 }

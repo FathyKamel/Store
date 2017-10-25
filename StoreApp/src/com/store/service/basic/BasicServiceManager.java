@@ -12,6 +12,7 @@ import com.store.database.exception.PersistanceInitException;
 import com.store.database.exception.PersistanceOperationException;
 import com.store.database.impl.HibernatePersistanceManager;
 import com.store.models.basic.BasicStoreEntity;
+import com.store.models.impl.SaleInvoicDetail;
 import com.store.ws.service.exception.OperationFailureException;
 
 
@@ -34,10 +35,10 @@ public class BasicServiceManager implements Serializable {
 
 	
 
-	public BasicStoreEntity insertNewItem(BasicStoreEntity currentItem) throws OperationFailureException {
+	public BasicStoreEntity insertNewItem(Object obj) throws OperationFailureException {
 		try {
 			BasicStoreEntity outBasicStoreEntity = 
-					(BasicStoreEntity) persistanceManager.addObject(currentItem);
+					(BasicStoreEntity) persistanceManager.addObject(obj);
 
 			return outBasicStoreEntity;
 

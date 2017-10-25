@@ -10,6 +10,8 @@ import org.hibernate.cfg.Configuration;
 import com.store.models.impl.Customer;
 import com.store.models.impl.Delegate;
 import com.store.models.impl.Product;
+import com.store.models.impl.SaleInvoicDetail;
+import com.store.models.impl.SaleInvoice;
 import com.store.models.impl.Supplier;
 
 
@@ -90,6 +92,7 @@ public class HibernateUtil {
 		configuration.addAnnotatedClass(Product.class);
 		configuration.addAnnotatedClass(Supplier.class);
 		configuration.addAnnotatedClass(Delegate.class);
-		
+		configuration.addAnnotatedClass(SaleInvoice.class);
+		configuration.addAnnotatedClass(SaleInvoicDetail.class);
 	}
 }

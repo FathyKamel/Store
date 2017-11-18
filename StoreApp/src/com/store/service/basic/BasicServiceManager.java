@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import com.store.database.basic.IPersistanceManager;
 import com.store.database.exception.InvalidPersistantObjectException;
 import com.store.database.exception.PersistanceInitException;
 import com.store.database.exception.PersistanceOperationException;
 import com.store.database.impl.HibernatePersistanceManager;
 import com.store.models.basic.BasicStoreEntity;
+import com.store.models.impl.Customer;
 import com.store.models.impl.SaleInvoicDetail;
 import com.store.ws.service.exception.OperationFailureException;
 
@@ -48,6 +50,8 @@ public class BasicServiceManager implements Serializable {
 		}
 
 	}
+	
+
 
 	
 }

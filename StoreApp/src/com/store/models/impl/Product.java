@@ -21,6 +21,8 @@ public class Product implements BasicStoreEntity{
         
         @Column(name = "ProductsName", length = 255)
 	private String ProductsName;
+	
+	 
         
         @Column(name = "ProductsCategory", length = 255)
 	private String ProductsCategory;
@@ -37,8 +39,21 @@ public class Product implements BasicStoreEntity{
         @Column(name = "ProductsLocation", length = 255)
     	private String ProductsLocation;
         
+    	@Column(name = "ProductPrice", length = 255)
+    	private Double ProductPrice;
+    	
+    	
+    	
         
-    @Override
+    public Double getProductPrice() {
+			return ProductPrice;
+		}
+
+		public void setProductPrice(Double productPrice) {
+			ProductPrice = productPrice;
+		}
+
+	@Override
     public Integer getId() {
        return this.ProductsId;
     }

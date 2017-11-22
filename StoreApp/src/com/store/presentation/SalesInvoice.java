@@ -1,6 +1,7 @@
 package com.store.presentation;
 
 import java.awt.ComponentOrientation;
+import java.awt.Dialog;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import com.store.database.exception.PersistanceOperationException;
@@ -30,7 +33,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class SalesInvoice extends javax.swing.JFrame {
 
@@ -41,15 +48,15 @@ public class SalesInvoice extends javax.swing.JFrame {
 	private List<SaleInvoicDetail> SaleInvoiceDetailList;
 	AddCustomer addCustomer = null;
 	AddDelegate addDelegate = null;
-	AddProduct  addProduct = null;
+	AddProduct addProduct = null;
+	Double total = 0.0;
 
 	private static DefaultTableModel tableModel;
-    
+
 	public static DefaultTableModel getTableModel() {
 		return tableModel;
 	}
-	
-	
+
 	public static javax.swing.JTextField getDelegateName() {
 		return DelegateName;
 	}
@@ -68,6 +75,8 @@ public class SalesInvoice extends javax.swing.JFrame {
 
 	public SalesInvoice() {
 		initComponents();
+
+		TotalInvoice.setText("0");
 
 		// CustomerNumber.addActionListener(this);
 	}
@@ -139,39 +148,113 @@ public class SalesInvoice extends javax.swing.JFrame {
 		});
 		jScrollPane1 = new javax.swing.JScrollPane();
 		InvoiceDetail = new javax.swing.JTable();
+		InvoiceDetail.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+
+			}
+		});
+
+		// InvoiceDetail.getModel().addTableModelListener(
+		// new TableModelListener()
+		// {
+		// public void tableChanged(TableModelEvent evt)
+		// {
+		//
+		// int row = InvoiceDetail.getSelectedRow();
+		//
+		// if ((String) InvoiceDetail.getValueAt(row, 2) == null) {
+		//
+		// JOptionPane jOptionPane =new JOptionPane();
+		// jOptionPane.showMessageDialog(null, "من فضلك ادخل الكمية", null,
+		// JOptionPane.WARNING_MESSAGE);
+		// return;
+		//
+		// }
+		//
+		// if (InvoiceDetail.getValueAt(row, 4).toString() == null) {
+		//
+		// JOptionPane jOptionPane =new JOptionPane();
+		// jOptionPane.showMessageDialog(null, "من فضلك ادخل السعر",
+		// "InfoBox: man " , JOptionPane.WARNING_MESSAGE);
+		// return;
+		//
+		// }
+		//
+		// int count = Integer.parseInt((String) InvoiceDetail
+		// .getValueAt(row, 2));
+		// Double price = Double.parseDouble(InvoiceDetail
+		// .getValueAt(row, 4).toString());
+		//
+		// total = Double.parseDouble(TotalInvoice.getText());
+		// total = (count * price) + total;
+		// TotalInvoice.setText(total.toString());
+		//
+		// }
+		// });
+
 		InvoiceDetail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == arg0.VK_ENTER) {
+
+					int row = InvoiceDetail.getSelectedRow();
+
+					if ((String) InvoiceDetail.getValueAt(row, 2) == null) {
+
+						JOptionPane jOptionPane = new JOptionPane();
+						jOptionPane.showMessageDialog(null,
+								"من فضلك ادخل الكمية", null,
+								JOptionPane.WARNING_MESSAGE);
+						return;
+
+					}
+
+					if (InvoiceDetail.getValueAt(row, 4).toString() == null) {
+
+						JOptionPane jOptionPane = new JOptionPane();
+						jOptionPane.showMessageDialog(null,
+								"من فضلك ادخل السعر", "InfoBox: man ",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+
+					}
+
+					int count = Integer.parseInt((String) InvoiceDetail
+							.getValueAt(row, 2));
+					Double price = Double.parseDouble(InvoiceDetail.getValueAt(
+							row, 4).toString());
+
+					total = Double.parseDouble(TotalInvoice.getText());
+					total = (count * price) + total;
+					TotalInvoice.setText(total.toString());
+
 					tableModel.addRow(new Object[] { null, null, null, null,
 							null, null });
-				}
-				
 
-        		int col = InvoiceDetail.getSelectedColumn();
-        		if (arg0.getKeyCode() == arg0.VK_F9 && col ==0 ) {
-        			try {
+					// System.out.println("count : "+count);
+					// System.out.println("price : "+price);
+
+				}
+
+				int col = InvoiceDetail.getSelectedColumn();
+				if (arg0.getKeyCode() == arg0.VK_F9 && col == 2) {
+					try {
 						addProduct = new AddProduct();
 					} catch (PersistanceOperationException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-        			addProduct.setVisible(true);
+					addProduct.setVisible(true);
 				}
-        		
-        		
-        		
-        		
-//        		System.out.println("value  "+AllCustomersTable.getModel().getValueAt(row, 0).toString());
-//        		SalesInvoice.getCustomerNumber().setText( AllCustomersTable.getModel().getValueAt(row, 0).toString());
-//        		SalesInvoice.getCustomerName().setText(AllCustomersTable.getModel().getValueAt(row, 1).toString());
-//				
-				
-				
-				
-				
-				
-				
+
+				// System.out.println("value  "+AllCustomersTable.getModel().getValueAt(row,
+				// 0).toString());
+				// SalesInvoice.getCustomerNumber().setText(
+				// AllCustomersTable.getModel().getValueAt(row, 0).toString());
+				// SalesInvoice.getCustomerName().setText(AllCustomersTable.getModel().getValueAt(row,
+				// 1).toString());
+				//
+
 			}
 
 			@Override
@@ -747,7 +830,7 @@ public class SalesInvoice extends javax.swing.JFrame {
 	}// GEN-LAST:event_SaveActionPerformed
 
 	private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_DeleteActionPerformed
-	// tableModel.addRow(new Object[]{null,null,null,null,null,null});
+		// tableModel.addRow(new Object[]{null,null,null,null,null,null});
 
 	}// GEN-LAST:event_DeleteActionPerformed
 

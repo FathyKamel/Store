@@ -24,6 +24,8 @@ import javax.swing.JButton;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class AddProduct extends javax.swing.JFrame {
@@ -168,33 +170,37 @@ public class AddProduct extends javax.swing.JFrame {
         scrollPane = new JScrollPane();
         
         JButton addProduct = new JButton("إضافة منتج");
+        addProduct.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		AddProductMode();
+        	}
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1Layout.setHorizontalGroup(
-        	jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addContainerGap(203, Short.MAX_VALUE)
         			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(jPanel1Layout.createSequentialGroup()
-        					.addGap(21)
-        					.addComponent(saveProduct, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-        					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(jPanel1Layout.createSequentialGroup()
-        					.addContainerGap(203, Short.MAX_VALUE)
-        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(productCategory, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(productName, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(productLocation, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))))
+        				.addComponent(productCategory, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(productName, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(productLocation, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
         			.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
         				.addComponent(productCategoryLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
         				.addComponent(productNameLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
         				.addComponent(productLocationLabel, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
         			.addGap(24))
-        		.addGroup(Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+        		.addGroup(jPanel1Layout.createSequentialGroup()
         			.addGap(31)
         			.addComponent(addProduct)
-        			.addContainerGap(359, Short.MAX_VALUE))
+        			.addContainerGap(365, Short.MAX_VALUE))
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addGap(21)
+        			.addComponent(saveProduct, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
         	jPanel1Layout.createParallelGroup(Alignment.LEADING)
@@ -227,9 +233,11 @@ public class AddProduct extends javax.swing.JFrame {
         		
         		int row = AllProductsTable.getSelectedRow();
         		System.out.println("value  "+AllProductsTable.getModel().getValueAt(row, 0).toString());
-        		SalesInvoice.getCustomerNumber().setText( AllProductsTable.getModel().getValueAt(row, 0).toString());
-        		SalesInvoice.getCustomerName().setText(AllProductsTable.getModel().getValueAt(row, 1).toString());
+//        		SalesInvoice.getCustomerNumber().setText( AllProductsTable.getModel().getValueAt(row, 0).toString());
+//        		SalesInvoice.getCustomerName().setText(AllProductsTable.getModel().getValueAt(row, 1).toString());
 //        		customerID = "123";
+        		
+        		
         		Object [] obj = {
         				AllProductsTable.getModel().getValueAt(row, 0),
         				AllProductsTable.getModel().getValueAt(row, 1).toString(),
@@ -238,17 +246,24 @@ public class AddProduct extends javax.swing.JFrame {
         				AllProductsTable.getModel().getValueAt(row, 4).toString(),
         				AllProductsTable.getModel().getValueAt(row, 5).toString()};
         		
-        		SalesInvoice.getTableModel().addRow(obj);
+        		//SalesInvoice.getTableModel().addRow(obj);
+        		
+        		int rowCount = SalesInvoice.getTableModel().getRowCount();
+        		Object id =  AllProductsTable.getModel().getValueAt(row, 0);
+        		
+        		System.out.println(id);
+        		SalesInvoice.getTableModel().setValueAt(AllProductsTable.getModel().getValueAt(row, 0), rowCount-1, 0);
+        		SalesInvoice.getTableModel().setValueAt(AllProductsTable.getModel().getValueAt(row, 1), rowCount-1, 1);
+        		SalesInvoice.getTableModel().setValueAt(AllProductsTable.getModel().getValueAt(row, 2), rowCount-1, 3);
+        		SalesInvoice.getTableModel().setValueAt(AllProductsTable.getModel().getValueAt(row, 3), rowCount-1, 4);
+        		SalesInvoice.getTableModel().setValueAt(AllProductsTable.getModel().getValueAt(row, 0), rowCount-1, 0);
+        		
+        		
+        		dispose();
 
         	}
         });
-        AllProductsTable.setModel(new DefaultTableModel(
-        	new Object[][] {
-        	},
-        	new String[] {
-        		"\u0631\u0642\u0645 \u0627\u0644\u0635\u0646\u0641", "\u0627\u0633\u0645 \u0627\u0644\u0635\u0646\u0641", "\u0627\u0644\u0648\u062D\u062F\u0629","السعر", "\u0627\u0644\u0633\u0639\u0631", "\u062F\u0627\u062E\u0644", "\u062E\u0627\u0631\u062C", "\u0627\u0644\u0631\u0635\u064A\u062F"
-        	}
-        ));
+        AllProductsTable.setModel(tableModel);
         scrollPane.setViewportView(AllProductsTable);
         jPanel1.setLayout(jPanel1Layout);
 
@@ -289,6 +304,10 @@ Object [] obj = {Product.getId(),Product.getProductsName(),Product.getProductsUn
 		Product.getProductsOut(),(Product.getProductsIn() -  Product.getProductsOut())};
 
 			tableModel.addRow( obj);
+			
+			SelectProductMode();
+    	    
+    	    scrollPane.setVisible(true);
 		} catch (OperationFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

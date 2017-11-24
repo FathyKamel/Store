@@ -49,8 +49,8 @@ public class Product implements BasicStoreEntity{
 			return ProductPrice;
 		}
 
-		public void setProductPrice(Double productPrice) {
-			ProductPrice = productPrice;
+		public void setProductPrice(String productsprice) {
+			this.ProductsName = productsprice;
 		}
 
 	@Override
@@ -83,8 +83,8 @@ public class Product implements BasicStoreEntity{
 		return ProductsUnit;
 	}
 
-	public void setProductsUnit(int ProductsUnit) {
-		this.ProductsUnit = ProductsUnit;
+	public void setProductsUnit(String ProductsUnit) {
+		this.ProductsName = ProductsUnit;
 	}
 
 	public int getProductsIn() {

@@ -39,6 +39,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.demo.DateChooserPanel;
+
 public class SalesInvoice extends javax.swing.JFrame {
 
 	private BasicServiceManager basicServiceManager;
@@ -274,7 +277,6 @@ public class SalesInvoice extends javax.swing.JFrame {
 		NetTotal = new javax.swing.JTextField();
 		jLabel10 = new javax.swing.JLabel();
 		Notes = new javax.swing.JTextField();
-		Date = new javax.swing.JTextField();
 		jLabel11 = new javax.swing.JLabel();
 		TypeDate = new javax.swing.JButton();
 		Save = new javax.swing.JButton();
@@ -361,402 +363,137 @@ public class SalesInvoice extends javax.swing.JFrame {
 				CustomerName.setText(addCustomer.getCustomerName());
 			}
 		});
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					saleInvoice.setInvoiceSaleDate(Long.parseLong( dateChooser.getToolTipText()));
+				}catch(Exception ex){
+				}
+			}
+		});
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
 				jPanel1);
-		jPanel1Layout
-				.setHorizontalGroup(jPanel1Layout
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addGap(0, 685, Short.MAX_VALUE)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																jLabel3,
-																GroupLayout.PREFERRED_SIZE,
-																62,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				Delete)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				Save)))
-										.addGap(28))
-						.addGroup(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				TypeDate)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				Date,
-																				GroupLayout.PREFERRED_SIZE,
-																				150,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				jLabel11,
-																				GroupLayout.PREFERRED_SIZE,
-																				38,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE))
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				choseCustomer,
-																				GroupLayout.PREFERRED_SIZE,
-																				44,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)))
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addGroup(
-																								jPanel1Layout
-																										.createSequentialGroup()
-																										.addComponent(
-																												CustomerName,
-																												GroupLayout.PREFERRED_SIZE,
-																												181,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												CustomerNumber,
-																												GroupLayout.PREFERRED_SIZE,
-																												49,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								InvoiceNumber,
-																								GroupLayout.PREFERRED_SIZE,
-																								84,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				jLabel4,
-																				GroupLayout.PREFERRED_SIZE,
-																				62,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(30))
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				DelegateName,
-																				GroupLayout.PREFERRED_SIZE,
-																				181,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				DelegateNumber,
-																				GroupLayout.PREFERRED_SIZE,
-																				51,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				jLabel5,
-																				GroupLayout.PREFERRED_SIZE,
-																				62,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addContainerGap())))
-						.addGroup(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addGap(0, 37, Short.MAX_VALUE)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				Notes,
-																				GroupLayout.PREFERRED_SIZE,
-																				251,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED,
-																				316,
-																				Short.MAX_VALUE)
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addGroup(
-																								jPanel1Layout
-																										.createSequentialGroup()
-																										.addComponent(
-																												DescountPercint,
-																												GroupLayout.PREFERRED_SIZE,
-																												87,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.UNRELATED)
-																										.addComponent(
-																												jLabel9,
-																												GroupLayout.PREFERRED_SIZE,
-																												85,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addGroup(
-																								jPanel1Layout
-																										.createSequentialGroup()
-																										.addComponent(
-																												NetTotal,
-																												GroupLayout.PREFERRED_SIZE,
-																												87,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.UNRELATED)
-																										.addComponent(
-																												jLabel8,
-																												GroupLayout.PREFERRED_SIZE,
-																												85,
-																												GroupLayout.PREFERRED_SIZE))))
-														.addGroup(
-																jPanel1Layout
-																		.createParallelGroup(
-																				Alignment.TRAILING,
-																				false)
-																		.addGroup(
-																				jPanel1Layout
-																						.createSequentialGroup()
-																						.addGap(209)
-																						.addComponent(
-																								jLabel10,
-																								GroupLayout.PREFERRED_SIZE,
-																								51,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addPreferredGap(
-																								ComponentPlacement.RELATED,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								TotalInvoice,
-																								GroupLayout.PREFERRED_SIZE,
-																								87,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addPreferredGap(
-																								ComponentPlacement.UNRELATED)
-																						.addComponent(
-																								jLabel7,
-																								GroupLayout.PREFERRED_SIZE,
-																								85,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addComponent(
-																				jScrollPane1,
-																				GroupLayout.PREFERRED_SIZE,
-																				712,
-																				GroupLayout.PREFERRED_SIZE)))
-										.addGap(45)));
-		jPanel1Layout
-				.setVerticalGroup(jPanel1Layout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																Save,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																Delete,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.LEADING,
-																false)
-														.addComponent(
-																jLabel3,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																jPanel1Layout
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				InvoiceNumber,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				Date,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				jLabel11,
-																				GroupLayout.PREFERRED_SIZE,
-																				26,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				TypeDate)))
-										.addPreferredGap(
-												ComponentPlacement.RELATED,
-												122, Short.MAX_VALUE)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																jLabel4,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																CustomerNumber,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																CustomerName,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																choseCustomer,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																jLabel5,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																DelegateNumber,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																DelegateName,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addComponent(jScrollPane1,
-												GroupLayout.PREFERRED_SIZE,
-												279, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.BASELINE,
-																false)
-														.addComponent(
-																jLabel7,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addComponent(
-																TotalInvoice,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																jLabel10,
-																GroupLayout.PREFERRED_SIZE,
-																28,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																Alignment.LEADING,
-																false)
-														.addGroup(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								Alignment.BASELINE)
-																						.addComponent(
-																								DescountPercint,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								jLabel9,
-																								GroupLayout.PREFERRED_SIZE,
-																								28,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								Alignment.BASELINE)
-																						.addComponent(
-																								jLabel8,
-																								GroupLayout.PREFERRED_SIZE,
-																								28,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								NetTotal,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)))
-														.addComponent(
-																Notes,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(71)));
+		jPanel1Layout.setHorizontalGroup(
+			jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(jPanel1Layout.createSequentialGroup()
+					.addGap(0, 37, Short.MAX_VALUE)
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addComponent(Notes, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(jPanel1Layout.createSequentialGroup()
+									.addComponent(DescountPercint, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(jLabel9, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+								.addGroup(jPanel1Layout.createSequentialGroup()
+									.addComponent(NetTotal, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(jPanel1Layout.createSequentialGroup()
+								.addGap(209)
+								.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(TotalInvoice, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE)))
+					.addGap(45))
+				.addGroup(jPanel1Layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addComponent(TypeDate)
+							.addGap(10)
+							.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+							.addGap(247))
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addComponent(choseCustomer, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+							.addGap(51)))
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+								.addGroup(jPanel1Layout.createSequentialGroup()
+									.addComponent(Delete)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(Save)))
+							.addGap(28))
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(jPanel1Layout.createSequentialGroup()
+									.addComponent(CustomerName, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(CustomerNumber, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+								.addComponent(InvoiceNumber, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addGap(30))
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addComponent(DelegateName, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(DelegateNumber, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+		);
+		jPanel1Layout.setVerticalGroup(
+			jPanel1Layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(jPanel1Layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(Save, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Delete, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(InvoiceNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(TypeDate)
+								.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(6)))
+					.addPreferredGap(ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(CustomerNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(CustomerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(choseCustomer, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(DelegateNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(DelegateName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE, false)
+						.addComponent(jLabel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(TotalInvoice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(jPanel1Layout.createSequentialGroup()
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(DescountPercint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel9, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+								.addComponent(NetTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(Notes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(71))
+		);
 		jPanel1.setLayout(jPanel1Layout);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
@@ -798,7 +535,7 @@ public class SalesInvoice extends javax.swing.JFrame {
 		saleInvoice = new SaleInvoice();
 		saleInvoice.setCustomerID(CustomerNumber.getText());
 		saleInvoice.setDelegatID(DelegateNumber.getText());
-		saleInvoice.setInvoiceSaleDate(Long.parseLong(Date.getText()));
+		//saleInvoice.setInvoiceSaleDate(Long.parseLong(DateChooserPanel.g));
 
 		SaleInvoiceDetailList = new ArrayList<SaleInvoicDetail>();
 		for (int i = 0; i < InvoiceDetail.getRowCount(); i++) {
@@ -936,7 +673,6 @@ public class SalesInvoice extends javax.swing.JFrame {
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private static javax.swing.JTextField CustomerName;
 	private static javax.swing.JTextField CustomerNumber;
-	private javax.swing.JTextField Date;
 	private static javax.swing.JTextField DelegateName;
 	private static javax.swing.JTextField DelegateNumber;
 	private javax.swing.JButton Delete;
@@ -958,15 +694,4 @@ public class SalesInvoice extends javax.swing.JFrame {
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable InvoiceDetail;
-
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// try {
-	// AddCustomer addCustomer = new AddCustomer();
-	// } catch (PersistanceOperationException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }
-	// }
-	// }
 }

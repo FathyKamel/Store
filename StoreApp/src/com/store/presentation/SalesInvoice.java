@@ -53,6 +53,7 @@ public class SalesInvoice extends javax.swing.JFrame {
 	AddDelegate addDelegate = null;
 	AddProduct addProduct = null;
 	Double total = 0.0;
+	private JDateChooser dateChooser;
 
 	private static DefaultTableModel tableModel;
 
@@ -103,7 +104,9 @@ public class SalesInvoice extends javax.swing.JFrame {
 		DelegateName = new javax.swing.JTextField();
 		CustomerName = new javax.swing.JTextField();
 		CustomerNumber = new javax.swing.JTextField();
-		CustomerNumber.addKeyListener(new KeyAdapter() {
+	    dateChooser = new JDateChooser();
+		CustomerNumber.addKeyListener(new KeyAdapter()
+		{
 			@Override
 			public void keyPressed(KeyEvent e) {
 
@@ -364,16 +367,6 @@ public class SalesInvoice extends javax.swing.JFrame {
 			}
 		});
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					saleInvoice.setInvoiceSaleDate(Long.parseLong( dateChooser.getToolTipText()));
-				}catch(Exception ex){
-				}
-			}
-		});
-
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
 				jPanel1);
 		jPanel1Layout.setHorizontalGroup(
@@ -535,8 +528,8 @@ public class SalesInvoice extends javax.swing.JFrame {
 		saleInvoice = new SaleInvoice();
 		saleInvoice.setCustomerID(CustomerNumber.getText());
 		saleInvoice.setDelegatID(DelegateNumber.getText());
-		//saleInvoice.setInvoiceSaleDate(Long.parseLong(DateChooserPanel.g));
-
+		//saleInvoice.setInvoiceSaleDate(dateChooser.);
+		saleInvoice.setInvoiceSaleDate(Long.parseLong(dateChooser.getToolTipText()));
 		SaleInvoiceDetailList = new ArrayList<SaleInvoicDetail>();
 		for (int i = 0; i < InvoiceDetail.getRowCount(); i++) {
 			saleInvoiceDetail = new SaleInvoicDetail();

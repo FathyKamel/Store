@@ -2,6 +2,9 @@ package com.store.models.impl;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class SaleInvoice implements BasicStoreEntity{
 	private Integer InvoiceSaleID;
 
 	@Column(name = "InvoiceSaleDate", length = 255)
-	private Long InvoiceSaleDate;
+	private long InvoiceSaleDate;
 
 	@Column(name = "CustomerID", length = 255)
 	private String CustomerID;
@@ -51,11 +54,16 @@ public class SaleInvoice implements BasicStoreEntity{
 		this.InvoiceSaleID= idee;
 	}
 
-	public Long getInvoiceSaleDate() {
+	public String getInvoiceSaleDate() {
+		ZonedDateTime todaydate = LocalDate.now( ZoneId.of( "America/Montreal" ) ).atStartOfDay(ZoneId.of( "America/Montreal" ));
+		int year=todaydate.getYear();
+		int mounth=todaydate.getMonthValue();
+		int day=todaydate.getDayOfMonth();
+		String  InvoiceSaleDate=(Integer.toString(day)+"/"+Integer.toString(mounth)+"/"+Integer.toString(year));
 		return InvoiceSaleDate;
 	}
 
-	public void setInvoiceSaleDate(Long invoiceSaleDate) {
+	public void setInvoiceSaleDate(long invoiceSaleDate) {
 		InvoiceSaleDate = invoiceSaleDate;
 	}
 

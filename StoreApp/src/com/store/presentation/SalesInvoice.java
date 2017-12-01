@@ -2,7 +2,9 @@ package com.store.presentation;
 
 import java.awt.ComponentOrientation;
 import java.awt.Dialog;
+import java.text.Format;
 import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.hibernate.loader.custom.Return;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -84,8 +88,16 @@ public class SalesInvoice extends javax.swing.JFrame {
 
 		// CustomerNumber.addActionListener(this);
 	}
-
-	public static void putCustomerInfo(String id, String name) {
+    
+	public String date(){
+		initComponents();
+		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+		 String s = formatter.format(dateChooser.getDate());
+		return s;
+		
+	}
+	
+ 	public static void putCustomerInfo(String id, String name) {
 		CustomerNumber.setText(id);
 		CustomerName.setText(name);
 
@@ -105,6 +117,7 @@ public class SalesInvoice extends javax.swing.JFrame {
 		CustomerName = new javax.swing.JTextField();
 		CustomerNumber = new javax.swing.JTextField();
 	    dateChooser = new JDateChooser();
+	    
 		CustomerNumber.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -452,9 +465,9 @@ public class SalesInvoice extends javax.swing.JFrame {
 									.addComponent(InvoiceNumber, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(jPanel1Layout.createSequentialGroup()
-							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(TypeDate)
-								.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(TypeDate, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+								.addComponent(dateChooser, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGap(6)))
 					.addPreferredGap(ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
 					.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
@@ -529,7 +542,7 @@ public class SalesInvoice extends javax.swing.JFrame {
 		saleInvoice.setCustomerID(CustomerNumber.getText());
 		saleInvoice.setDelegatID(DelegateNumber.getText());
 		//saleInvoice.setInvoiceSaleDate(dateChooser.);
-		saleInvoice.setInvoiceSaleDate(Long.parseLong(dateChooser.getToolTipText()));
+		saleInvoice.setInvoiceSaleDate(Long.parseLong(date()));
 		SaleInvoiceDetailList = new ArrayList<SaleInvoicDetail>();
 		for (int i = 0; i < InvoiceDetail.getRowCount(); i++) {
 			saleInvoiceDetail = new SaleInvoicDetail();
